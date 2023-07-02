@@ -1,20 +1,13 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Logging;
 using System;
-using System.ComponentModel;
 using System.IO;
-using System.Net.Http;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using DbUp;
-using DbUp.SqlServer;
-using DbUp.MySql;
-using DbUp.Postgresql;
 using DbUp.Builder;
 using DbUp.ScriptProviders;
 using DbUp.Helpers;
-using DbUp.Engine;
 
 namespace OWSTools.Commands
 {
@@ -239,7 +232,7 @@ namespace OWSTools.Commands
                 var DatabaseFileResult = DatabaseFileExecutor.Build().PerformUpgrade();
                 if (!DatabaseFileResult.Successful)
                 {
-                    Output(DatabaseFileResult.Error.ToString(), ConsoleColor.Red);
+                    OutputLine(DatabaseFileResult.Error.ToString(), ConsoleColor.Red);
                     return Task.FromResult(1);
                 }
                 OutputLine("Success!", ConsoleColor.Green);
